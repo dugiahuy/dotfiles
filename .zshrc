@@ -1,17 +1,16 @@
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 # Prezto
 source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 
 # Homebrew
-eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(brew shellenv)"
 
 # Asdf
-. "$HOMEBREW_CELLAR/asdf/$(asdf version | cut -c 2-)/libexec/asdf.sh"
+. "$(brew --prefix asdf)/libexec/asdf.sh"
 
 # PATH
 # Golang
-export PATH="$(go env GOPATH)/bin:$PATH"
+. ~/.asdf/plugins/golang/set-env.zsh
+
 
 # Development ENV
 source $HOME/dotfiles/.env
@@ -29,6 +28,3 @@ alias zz='fasd_cd -d -i' # cd with interactive selection
 
 # Kubernetes
 alias k='kubectl'
-
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
